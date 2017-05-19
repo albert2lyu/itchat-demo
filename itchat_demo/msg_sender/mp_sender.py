@@ -5,20 +5,22 @@
 import itchat
 
 
-target_name = u'北京交通大学教育基金会'
-test_target_name = u'北京移动10086'
+class MpSender(object):
 
+	target_name = u'北京交通大学教育基金会'
+	test_target_name = u'北京移动10086'
+	msg = u'你好, 这里是测试'
 
-def get_nameid_by_kwd(kwd):
-	target_contacts = itchat.search_mps(name=test_target_name)
+	def get_nameid_by_kwd(self, kwd):
+		target_contacts = itchat.search_mps(name=self.test_target_name)
 
-	if not target_contacts:
-		print(u'用户未找到, exit')
-		exit(0)
+		if not target_contacts:
+			print(u'用户未找到, exit')
+			exit(0)
 
-	return target_contacts[0].UserName
+		return target_contacts[0].UserName
 
-
-def send_msg2mp():
-	target_name_id = get_nameid_by_kwd(test_target_name)
-	itchat.send(u'你好, 这里是测试', toUserName=target_name_id)
+	def send_msg2mp(self):
+		target_name_id = self.get_nameid_by_kwd(MpSender.test_target_name)
+		itchat.send(self.msg, toUserName=target_name_id)
+		print(u'- %s' % self.msg)
