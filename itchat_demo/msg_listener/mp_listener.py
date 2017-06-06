@@ -19,5 +19,5 @@ class MpListener(object):
 		itchat.run(debug=True)
 
 	def register_run(self):
-		recv_mp_t = threading.Thread(target=self.msg_loog_mp(), name='msg_recv_mp')
+		recv_mp_t = threading.Thread(target=self.msg_loog_mp, name='msg_recv_mp')
 		recv_mp_t.start()
